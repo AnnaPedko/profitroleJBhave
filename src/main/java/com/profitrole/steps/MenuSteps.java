@@ -32,6 +32,17 @@ public class MenuSteps extends ScenarioSteps {
 
     }
 
+    @Step
+    public void user_select_day(String day){
+        switch (day){
+            case "breakfast":user_select_breakfast_button();break;
+            case "dinner":user_select_dinner_button();break;
+            case "supper":user_select_supper_button();break;
+        }
+
+
+    }
+
   @Step
   public void user_is_on_profitrole_menu_page(){
       menuPage.open();
@@ -40,11 +51,7 @@ public class MenuSteps extends ScenarioSteps {
 
   @Step
     public void user_select_day_and_cuisine(String cuisine,String day){
-      switch (day){
-          case "breakfast":user_select_breakfast_button();break;
-          case "dinner":user_select_dinner_button();break;
-          case "supper":user_select_supper_button();break;
-      }
+      user_select_day(day);
       user_select_cuisine(cuisine);
 
   }
@@ -56,8 +63,16 @@ public class MenuSteps extends ScenarioSteps {
   }
 
   @Step
-    public void user_should_see_match(String day,String dish){
+    public void user_should_see_match_dishes(String day,String dish){
     assertThat(menuPage.getComparisonElements(day, dish),is(dish.trim()));
+  }
+
+  @Step
+  public void user_should_see_title(String idPanel,String title){
+   assertThat(menuPage.getTitle(idPanel),is(title));
+  }
+
+
 
 }
 
@@ -67,6 +82,7 @@ public class MenuSteps extends ScenarioSteps {
 
 
 
-}
+
+
 
 

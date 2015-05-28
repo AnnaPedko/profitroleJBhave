@@ -1,5 +1,4 @@
 package com.profitrole.pages;
-
 import ch.lambdaj.function.convert.Converter;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
@@ -8,6 +7,7 @@ import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+
 import org.openqa.selenium.remote.server.handler.FindElement;
 
 import javax.swing.*;
@@ -19,7 +19,8 @@ import static ch.lambdaj.Lambda.convert;
  * Created by Анютка on 27.05.2015.
  */
 @DefaultUrl("http://gioia-profiterole.rhcloud.com/menu")
-public class MenuPage extends PageObject {
+public class MenuPage extends PageObject{
+
 @FindBy(xpath="//button[@value=\"#breakfast\"]")
 private WebElementFacade buttonBreakfast;
 @FindBy (xpath="//button[@value=\"#dinner\"]")
@@ -41,7 +42,6 @@ private WebElementFacade breakfastCrteation;
 
     public void selectCuisine(String cuisine){
         getDriver().findElement(By.xpath(".//*[@id='cuisine']//label[text()='" + cuisine + "']")).click();
-
     }
 
     public WebElement selectDishes(String dish){
@@ -62,6 +62,11 @@ private WebElementFacade breakfastCrteation;
 
     public String getComparisonElements(String idPanel,String dish) {
         String result= (getDriver().findElement(By.xpath(".//*[@id='" + idPanel + "']//label[text()='" + dish +"']"))).getText();
+        return result;
+    }
+
+    public String getTitle(String idPanel) {
+        String result= (getDriver().findElement(By.xpath(".//*[@id='" + idPanel + "']//h1"))).getText();
         return result;
     }
 

@@ -5,7 +5,7 @@ import net.thucydides.core.steps.ScenarioSteps;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class EndUserSteps extends ScenarioSteps {
+public class LoginPageSteps extends ScenarioSteps {
 
     LoginPage loginPage;
     @Step
@@ -34,7 +34,15 @@ public class EndUserSteps extends ScenarioSteps {
 
     }
 
+    @Step
+    public void should_see_success_enter(String login,String email, String birthday,String country){
+        assertThat(loginPage.getProfile(),hasItems(login,email,birthday,country));
+    }
 
+    @Step
+    public void click_on_link(String parameter){
+        loginPage.clickOnLink(parameter);
+    }
 
     @Step
     public void fill_fields_and_login(String username,String password) {
@@ -51,11 +59,13 @@ public class EndUserSteps extends ScenarioSteps {
     }
 
     @Step
-   public void fill_pass_and_login(String password){
+    public void fill_pass_and_login(String password){
         enters_password(password);
         starts_login();
 
     }
+
+
 
 
 
